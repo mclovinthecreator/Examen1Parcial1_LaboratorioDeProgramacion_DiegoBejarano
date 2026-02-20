@@ -44,10 +44,10 @@ public class Movie extends Rentitem {
         double total = getPreciobase() * dias;
         String estado = getEstado();
         
-        if(estado.endsWith("Estreno")&&dias>2){
+        if(estado.equals("Estreno")&&dias>2){
             int diasextra = dias - 2;
             total = total + (diasextra * 50);
-        }else if(estado.endsWith("Normal")&&dias>5){
+        }else if(estado.equals("Normal")&&dias>5){
             int diasextra = dias - 5;
             total = total + (diasextra * 30);
         }

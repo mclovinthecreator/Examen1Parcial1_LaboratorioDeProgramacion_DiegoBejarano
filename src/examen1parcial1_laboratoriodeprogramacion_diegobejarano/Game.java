@@ -78,7 +78,7 @@ public class Game extends Rentitem implements Menudeacciones{
     @Override
     public String toString(){
         int anio = fechadepublicacion.get(Calendar.YEAR);
-        int mes = fechadepublicacion.get(Calendar.MONTH);
+        int mes = fechadepublicacion.get(Calendar.MONTH)+1;
         int dia = fechadepublicacion.get(Calendar.DAY_OF_MONTH);
         return super.toString() + " Publicacion: " + dia + "/"+mes+"/"+anio+" PS3 Game";
     }
@@ -89,7 +89,7 @@ public class Game extends Rentitem implements Menudeacciones{
                 String year = JOptionPane.showInputDialog("Ingrese el anio: ");
                 String messtr = JOptionPane.showInputDialog("Ingrese el mes (1-12): ");
                 String diastr = JOptionPane.showInputDialog("Ingrese el dia: ");
-                if(year != null && messtr != null & diastr != null){
+                if(year != null && messtr != null && diastr != null){
                     setFechaPublicacion(Integer.parseInt(year),Integer.parseInt(messtr),Integer.parseInt(diastr));
                     JOptionPane.showMessageDialog(null, "Fecha actualizada correctamente.");
                 }
@@ -111,7 +111,7 @@ public class Game extends Rentitem implements Menudeacciones{
     }
     @Override
     public void submenu(){
-        String op = "SUBMENU DE"+ getNombre()+"\n"
+        String op = "SUBMENU DE" + getNombre() + "\n"
                 + "1. Actualizar fecha de publicacion\n"
                 + "2. Agregar especificacion\n"
                 + "3. Ver especificaciones\n"

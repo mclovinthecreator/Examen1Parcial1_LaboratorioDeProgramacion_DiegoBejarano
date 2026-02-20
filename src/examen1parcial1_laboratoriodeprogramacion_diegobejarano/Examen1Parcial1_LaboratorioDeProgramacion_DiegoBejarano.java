@@ -50,12 +50,15 @@ public class Examen1Parcial1_LaboratorioDeProgramacion_DiegoBejarano {
     }
 
     public static int menu() {
-        int op = Integer.parseInt(JOptionPane.showInputDialog(null, "MENU\n"
+        String opstr = JOptionPane.showInputDialog(null, "MENU\n"
                 + "1. Agregar Item\n"
                 + "2. Rentar\n"
                 + "3. Ejecutar Submenu\n"
                 + "4. Imprimir todo\n"
-                + "5. Salir"));
+                + "5. Salir");
+        if(opstr == null) System.exit(0);
+
+        int op = Integer.parseInt(opstr);
         return op;
 
     }
