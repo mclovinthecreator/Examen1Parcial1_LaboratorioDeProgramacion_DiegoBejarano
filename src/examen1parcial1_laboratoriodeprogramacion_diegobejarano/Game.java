@@ -6,19 +6,20 @@ package examen1parcial1_laboratoriodeprogramacion_diegobejarano;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author diego
  */
-public class Game extends Rentitem implements MenuActions{
+public class Game extends Rentitem implements Menudeacciones{
     private Calendar fechadepublicacion;
     private ArrayList<String> especificaciones;
 
-    public Game(String code, String nombre, double preciobase) {
-        super(code, nombre, preciobase);
-        this.fechadepublicacion = fechadepublicacion;
-        this.especificaciones = especificaciones;
+    public Game(String code, String nombre) {
+        super(code, nombre, 20);
+        this.fechadepublicacion = Calendar.getInstance();
+        this.especificaciones = new ArrayList<String>();
     }
 
     public Calendar getFechadepublicacion() {
@@ -69,4 +70,52 @@ public class Game extends Rentitem implements MenuActions{
             }
          
         }
+    @Override
+    public double pagorenta(int dias){
+        return getPreciobase()*dias;
+    }
+    
+    @Override
+    public String toString(){
+        int anio = fechadepublicacion.get(Calendar.YEAR);
+        int mes = fechadepublicacion.get(Calendar.MONTH);
+        int dia = fechadepublicacion.get(Calendar.DAY_OF_MONTH);
+        return super.toString() + " Publicacion: " + dia + "/"+mes+"/"+anio+" PS3 Game";
+    }
+    @Override
+    public void ejecutaropcion(int op){
+        switch(op){
+            case 1:
+                String year = JOptionPane.showInputDialog("Ingrese el anio: ");
+                String messtr = JOptionPane.showInputDialog("Ingrese el mes (1-12): ");
+                String diastr = JOptionPane.showInputDialog("Ingrese el dia: ");
+                if(year != null && messtr != null & diastr != null){
+                    setFechaPublicacion(Integer.parseInt(year),Integer.parseInt(messtr),Integer.parseInt(diastr));
+                    JOptionPane.showMessageDialog(null, "Fecha actualizada correctamente.");
+                }
+                break;
+            case 2:
+                String specicifacion = JOptionPane.showInputDialog("Ingrese la especificacion: ");
+                if(specicifacion != null && !specicifacion.trim().equals("")){
+                    agregarEspecificacion(specicifacion);
+                    JOptionPane.showMessageDialog(null, "Especificacion agregada.");
+                }
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(null, "Especificaciones de "+getNombre()+":\n"+getEspecificacionesTexto());
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opcion no valida");
+                        break;
+        }
+    }
+    @Override
+    public void submenu(){
+        String op = "SUBMENU DE"+ getNombre()+"\n"
+                + "1. Actualizar fecha de publicacion\n"
+                + "2. Agregar especificacion\n"
+                + "3. Ver especificaciones\n"
+                + "0. Salir";
+        JOptionPane.showMessageDialog(null, op);
+    }
 }
